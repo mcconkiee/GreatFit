@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="heart" type="string" >&#xf004;</item>
+    <item name="heartbeat" type="string" >&#xf21e;</item>
+    <item name="footprints" type="string">&#xf54b;</item>
+    <item name="building" type="string">&#xf1ad;</item>
+</resources>

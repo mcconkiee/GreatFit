@@ -22,7 +22,7 @@ public abstract class AbstractWatchFace extends com.huami.watch.watchface.Abstra
 
 
     public ClockWidget clock;
-    final LinkedList<Widget> widgets = new LinkedList<>();
+    public final LinkedList<Widget> widgets = new LinkedList<>();
     private Intent slptIntent;
 
     private class DigitalEngine extends com.huami.watch.watchface.AbstractWatchFace.DigitalEngine {

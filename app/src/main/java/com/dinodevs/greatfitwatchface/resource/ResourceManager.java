@@ -18,7 +18,9 @@ import java.util.Map;
 public class ResourceManager {
 
     public enum Font {
-        FONT_FILE("fonts/font.otf")/*, ANOTHER_FONT("fonts/myFont.otf")*/;  // More fonts can go here
+        FONT_FILE("fonts/font.otf"),
+        FONTAWESOME("fonts/fontawesome4.ttf"),
+        FONTAWESOMESOLID("fonts/fontawesome4_solid.ttf")/*, ANOTHER_FONT("fonts/myFont.otf")*/;  // More fonts can go here
 
         private final String path;
 

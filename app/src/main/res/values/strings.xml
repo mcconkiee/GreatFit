@@ -3,6 +3,9 @@
     <string name="watch_face">GreatFit</string>
     <string name="author">GreatApo</string>
 
+    <string name="withings_white">Withings White</string>
+    <string name="author_2">EricM</string>
+
     <!-- Settings -->
     <string name="settings">Settings</string>
     <string name="save">Save</string>
