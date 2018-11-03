@@ -113,7 +113,8 @@ public class MyWatchFaceSlpt extends AbstractWatchFaceSlpt {
         context = this.getApplicationContext();
 
         // Load settings
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
+        settings.setService(this);
 
         this.clock = new MainClock(settings);
         this.widgets.add(new TachWidget(settings));

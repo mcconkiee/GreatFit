@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="category_tach" type="string">category_tach</item>
+    <item name="category_top" type="string">category_top</item>
+    <item name="category_date" type="string">category_date</item>
+
+    <item name="option_battery" type="string">Battery</item>
+    <item name="option_hear_rate" type="string">Heart Rate</item>
+    <item name="option_steps" type="string">Steps</item>
+    <item name="option_weather" type="string">Weather</item>
+    <item name="option_date" type="string">Date</item>
+    <item name="option_sunrise_sunset" type="string">Sunrise/Sunset</item>
+</resources>

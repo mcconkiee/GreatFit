@@ -4,4 +4,7 @@
     <item name="heartbeat" type="string" >&#xf21e;</item>
     <item name="footprints" type="string">&#xf54b;</item>
     <item name="building" type="string">&#xf1ad;</item>
+    <item name="tachometer" type="string">&#xf3fd;</item>
+    <item name="calendar" type="string">&#xf073;</item>
+    <item name="circle" type="string">&#xf111;</item>
 </resources>

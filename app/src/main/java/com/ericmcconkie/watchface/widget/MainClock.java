@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.dinodevs.greatfitwatchface.settings.LoadSettings;
 import com.dinodevs.greatfitwatchface.widget.AnalogClockWidget;
+import com.ericmcconkie.utils.AppPaint;
 import com.ericmcconkie.utils.RotatedBitmap;
 import com.ericmcconkie.watchface.settings.Settings;
 import com.huami.watch.watchface.util.Util;
@@ -32,6 +33,7 @@ public class MainClock extends AnalogClockWidget {
     private Bitmap hourHand;
     private Bitmap minuteHand;
     private Matrix matrix;
+    private  Paint paint = AppPaint.getFacePaint();
     public MainClock(Settings settings) {
         this.settings = settings;
     }
@@ -49,9 +51,9 @@ public class MainClock extends AnalogClockWidget {
 
     @Override
     public void onDrawAnalog(Canvas canvas, float width, float height, float centerX, float centerY, float secRot, float minRot, float hrRot) {
-        canvas.drawBitmap(this.background,0,0,settings.paint);
-        RotatedBitmap.drawRotatedImage(this.hourHand,hrRot,canvas,matrix,settings.paint);
-        RotatedBitmap.drawRotatedImage(this.minuteHand,minRot,canvas,matrix,settings.paint);
+        canvas.drawBitmap(this.background,0,0,this.paint);
+        RotatedBitmap.drawRotatedImage(this.hourHand,hrRot,canvas,matrix,this.paint);
+        RotatedBitmap.drawRotatedImage(this.minuteHand,minRot,canvas,matrix,this.paint);
 
 
     }

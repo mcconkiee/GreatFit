@@ -50,15 +50,18 @@ public class TopWidget extends AbstractWidget {
     public void init(Service service) {
         super.init(service);
         this.service = service;
-        String settingsName = service.getApplication().getPackageName() +"_settings";
-        this.sharedPreferences = service.getApplication().getSharedPreferences(settingsName,Context.MODE_PRIVATE);
-        if(sharedPreferences.getInt(TAG, -1) == -1) {
-            sharedPreferences.edit().putInt(TAG, this.dataType.getDataType()).apply();
-        }
-        int tachDataTypePref = sharedPreferences.getInt(TAG,DataType.HEART_RATE.getDataType());
-        this.dataType = DataType.fromValue(tachDataTypePref);
-        Log.d(TAG, String.format("init: data type for TACH  = %d ",this.dataType.getDataType()));
-        image = Util.decodeImage(service.getResources(), "icons/heart_rate.png");
+//        String settingsName = service.getApplication().getPackageName() +"_settings";
+//        this.sharedPreferences = service.getApplication().getSharedPreferences(settingsName,Context.MODE_PRIVATE);
+//        if(sharedPreferences.getInt(TAG, -1) == -1) {
+//            sharedPreferences.edit().putInt(TAG, this.dataType.getDataType()).apply();
+//        }
+//        int tachDataTypePref = sharedPreferences.getInt(TAG,DataType.HEART_RATE.getDataType());
+//        this.dataType = DataType.fromValue(tachDataTypePref);
+//        Log.d(TAG, String.format("init: data type for TACH  = %d ",this.dataType.getDataType()));
+//        image = Util.decodeImage(service.getResources(), "icons/heart_rate.png");
+
+
+        this.dataType = this.settings.dataTypeForItem(service.getString(R.string.category_top));
 
         // Font
         this.textPaint = new TextPaint(TextPaint.ANTI_ALIAS_FLAG);
@@ -86,6 +89,10 @@ public class TopWidget extends AbstractWidget {
         //icon
         String icon = service.getString(R.string.heartbeat);
         canvas.drawText(String.format("%s --",icon),centerX,centerY - 55,this.iconPaint);
+
+//        Bitmap tempImage = StringsHelper.textAsBitmap(icon,this.iconPaint);
+//        this.iconPaint.setColor(service.getResources().getColor(R.color.primary));
+//        canvas.drawBitmap(tempImage,centerX,centerY,iconPaint);
     }
 
     @Override
@@ -101,7 +108,7 @@ public class TopWidget extends AbstractWidget {
         String icon = service.getString(R.string.heartbeat);
         Bitmap tempImage = StringsHelper.textAsBitmap(icon,this.iconPaint);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        tempImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        tempImage.compress(Bitmap.CompressFormat.PNG, 50, stream);
         byte[] bitmapdata = stream.toByteArray();
 
         SlptPictureView pictView = new SlptPictureView();

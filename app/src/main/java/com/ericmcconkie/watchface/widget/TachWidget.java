@@ -52,14 +52,17 @@ public class TachWidget extends AbstractWidget {
     public void init(Service service) {
         super.init(service);
         this.service = service;
-        String settingsName = service.getApplication().getPackageName() +"_settings";
-        this.sharedPreferences = service.getApplication().getSharedPreferences(settingsName,Context.MODE_PRIVATE);
-        if(sharedPreferences.getInt("tach_meter", -1) == -1) {
-            sharedPreferences.edit().putInt("tach_meter", this.dataType.getDataType()).apply();
-        }
-        int tachDataTypePref = sharedPreferences.getInt("tach_meter",DataType.BATTERY.getDataType());
-        this.dataType = DataType.fromValue(tachDataTypePref);
-        Log.d(TAG, String.format("init: data type for TACH  = %d ",this.dataType.getDataType()));
+
+//        String settingsName = service.getApplication().getPackageName() +"_settings";
+//        this.sharedPreferences = service.getApplication().getSharedPreferences(settingsName,Context.MODE_PRIVATE);
+//        if(sharedPreferences.getInt("tach_meter", -1) == -1) {
+//            sharedPreferences.edit().putInt("tach_meter", this.dataType.getDataType()).apply();
+//        }
+//        int tachDataTypePref = sharedPreferences.getInt("tach_meter",DataType.BATTERY.getDataType());
+//        this.dataType = DataType.fromValue(tachDataTypePref);
+//        Log.d(TAG, String.format("init: data type for TACH  = %d ",this.dataType.getDataType()));
+
+        this.dataType = this.settings.dataTypeForItem(service.getString(R.string.category_tach));
         this.tachHand = BitmapFactory.decodeResource(service.getResources(),
                 R.drawable.tach);
         matrix = new Matrix();
@@ -122,10 +125,4 @@ public class TachWidget extends AbstractWidget {
     }
 
 
-    private void logger(String from){
-        Log.d(TAG, from);
-        Log.d(TAG, String.format("tachval: %f ",tachVal));
-        Log.d(TAG, String.format("angle: %f ",angle));
-        Log.d(TAG, String.format("theta: %d ",theta));
-    }
 }

@@ -14,7 +14,7 @@
         <!-- MyFace -->
         <activity android:exported="true" android:launchMode="singleTask" android:name="com.huami.watch.watchface.custom.ui.WatchFaceSettingsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <activity android:launchMode="singleTask" android:name="com.huami.watch.watchface.custom.ui.WatchFaceCustomActivity"/>
-        <!--<activity android:exported="true" android:launchMode="singleTask" android:name="com.ericmcconkie.watchface.activities.SettingsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>-->
+        <activity android:exported="true" android:launchMode="singleTask" android:name=".settings.Settings" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <service android:name="com.dinodevs.greatfitwatchface.GreatFitSlpt"/>
         <service android:name="com.dinodevs.greatfitwatchface.GreatFit" android:label="@string/watch_face" android:permission="android.permission.BIND_WALLPAPER">
             <meta-data android:name="android.service.wallpaper" android:resource="@xml/custom_watch_face" />
@@ -29,9 +29,10 @@
 
 
         <!-- Eric my Face -->
+        <activity android:exported="true" android:launchMode="singleTask" android:name="com.ericmcconkie.watchface.settings.WithingsSettingsActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
         <service android:name="com.ericmcconkie.watchface.MyWatchFaceSlpt"/>
         <service android:name="com.ericmcconkie.watchface.MyWatchFace" android:label="@string/withings_white" android:permission="android.permission.BIND_WALLPAPER">
-            <meta-data android:name="android.service.wallpaper" android:resource="@xml/custom_watch_face" />
+            <meta-data android:name="android.service.wallpaper" android:resource="@xml/withings_watch_face_settings" />
             <meta-data android:name="com.google.android.wearable.watchface.preview" android:resource="@drawable/withings_preview" />
             <meta-data android:name="com.google.android.wearable.watchface.preview_circular" android:resource="@drawable/withings_preview" />
             <meta-data android:name="com.huami.watch.watchface.hasslpt" android:value="true" />
@@ -40,7 +41,7 @@
                 <category android:name="com.google.android.wearable.watchface.category.WATCH_FACE" />
             </intent-filter>
         </service>
-
+        <activity android:name="com.ericmcconkie.watchface.settings.WithingSettingsItemActivity"></activity>
         <!--
             Here you can copy-paste the above code (under "Mainface") to add a second watch face
         -->
@@ -60,6 +61,7 @@
         <activity android:name="com.dinodevs.greatfitwatchface.settings.WidgetsActivity"></activity>
         <activity android:name="com.dinodevs.greatfitwatchface.settings.ProgressWidgetsActivity"></activity>
         <activity android:name="com.dinodevs.greatfitwatchface.settings.LanguageActivity"></activity>
+
     </application>
 
 </manifest>
