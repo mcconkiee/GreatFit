@@ -1,33 +1,24 @@
 package com.ericmcconkie.watchface.widget;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.util.Log;
 
 import com.dinodevs.greatfitwatchface.R;
-import com.dinodevs.greatfitwatchface.data.Battery;
 import com.dinodevs.greatfitwatchface.data.DataType;
-import com.dinodevs.greatfitwatchface.data.HeartRate;
 import com.dinodevs.greatfitwatchface.resource.ResourceManager;
 import com.dinodevs.greatfitwatchface.widget.AbstractWidget;
-import com.ericmcconkie.utils.RotatedBitmap;
 import com.ericmcconkie.utils.StringsHelper;
 import com.ericmcconkie.utils.ValueForDataType;
 import com.ericmcconkie.watchface.settings.Settings;
-import com.huami.watch.watchface.util.Util;
-import com.ingenic.iwds.slpt.view.analog.SlptRotateView;
 import com.ingenic.iwds.slpt.view.core.SlptPictureView;
 import com.ingenic.iwds.slpt.view.core.SlptViewComponent;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -38,7 +29,8 @@ public class TopWidget extends AbstractWidget {
     SharedPreferences sharedPreferences;
     private DataType dataType = DataType.HEART_RATE;
     private Settings settings;
-    private Bitmap image;
+    private String mIcon; //font awesome icon for top
+    private Bitmap mImage; //icon as an image
     Service service;
     private float widgetVal = 0f;
     private Paint textPaint;
@@ -50,16 +42,6 @@ public class TopWidget extends AbstractWidget {
     public void init(Service service) {
         super.init(service);
         this.service = service;
-//        String settingsName = service.getApplication().getPackageName() +"_settings";
-//        this.sharedPreferences = service.getApplication().getSharedPreferences(settingsName,Context.MODE_PRIVATE);
-//        if(sharedPreferences.getInt(TAG, -1) == -1) {
-//            sharedPreferences.edit().putInt(TAG, this.dataType.getDataType()).apply();
-//        }
-//        int tachDataTypePref = sharedPreferences.getInt(TAG,DataType.HEART_RATE.getDataType());
-//        this.dataType = DataType.fromValue(tachDataTypePref);
-//        Log.d(TAG, String.format("init: data type for TACH  = %d ",this.dataType.getDataType()));
-//        image = Util.decodeImage(service.getResources(), "icons/heart_rate.png");
-
 
         this.dataType = this.settings.dataTypeForItem(service.getString(R.string.category_top));
 
@@ -79,16 +61,17 @@ public class TopWidget extends AbstractWidget {
         this.iconPaint.setTextSize(25);
         this.iconPaint.setTextAlign( Paint.Align.CENTER);
 
+        mIcon = service.getString(R.string.heartbeat);
+        mImage  = StringsHelper.textAsBitmap(mIcon,this.iconPaint);
     }
 
     @Override
     public void draw(Canvas canvas, float width, float height, float centerX, float centerY) {
         //value
-        canvas.drawText(String.format("%d",(int)this.widgetVal),centerX,centerY - 88,this.textPaint);
+        canvas.drawText(StringsHelper.widgetValAsString((int)this.widgetVal),centerX,centerY - 88,this.textPaint);
 
         //icon
-        String icon = service.getString(R.string.heartbeat);
-        canvas.drawText(String.format("%s --",icon),centerX,centerY - 55,this.iconPaint);
+        canvas.drawText(String.format("%s --",mIcon),centerX,centerY - 55,this.iconPaint);
 
 //        Bitmap tempImage = StringsHelper.textAsBitmap(icon,this.iconPaint);
 //        this.iconPaint.setColor(service.getResources().getColor(R.color.primary));
@@ -104,26 +87,55 @@ public class TopWidget extends AbstractWidget {
     @Override
     public List<SlptViewComponent> buildSlptViewComponent(Service service, boolean better_resolution) {
 
-        List<SlptViewComponent> list = new ArrayList<>();
+
+        //todo - make this dynamic to the settings
         String icon = service.getString(R.string.heartbeat);
-        Bitmap tempImage = StringsHelper.textAsBitmap(icon,this.iconPaint);
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        tempImage.compress(Bitmap.CompressFormat.PNG, 50, stream);
-        byte[] bitmapdata = stream.toByteArray();
+        Log.d(TAG, String.format("icon for this is %s",icon));
+        Log.d(TAG, "buildSlptViewComponent: " + StringsHelper.widgetValAsString((int)this.widgetVal));
+        List<SlptViewComponent> list = new ArrayList<>();
+
+        //value
+        SlptPictureView pictViewValue = new SlptPictureView();
+        pictViewValue.setStringPicture(StringsHelper.widgetValAsString((int)this.widgetVal));
+        int color = service.getResources().getColor(R.color.white);
+        pictViewValue.setTextAttr(50,color,ResourceManager.getTypeFace(service.getResources(), ResourceManager.Font.FONT_FILE));
+        pictViewValue.alignX = (byte) 2;
+        pictViewValue.alignY = (byte) 2;
+        pictViewValue.y = -102;
+        pictViewValue.setRect(320,320);
+        list.add(pictViewValue);
+
+
+        //icon
 
         SlptPictureView pictView = new SlptPictureView();
-        pictView.setImagePicture(bitmapdata);
+        pictView.setStringPicture(icon);
+        pictView.setTextAttr(30,color,ResourceManager.getTypeFace(service.getResources(), ResourceManager.Font.FONTAWESOMESOLID));
         pictView.alignX = (byte) 2;
         pictView.alignY = (byte) 2;
-        pictView.y = -80;
+        pictView.y = -65;
+        pictView.x = -10;
         pictView.setRect(320,320);
         list.add(pictView);
+
+        //--
+
+        SlptPictureView pictViewDash = new SlptPictureView();
+        pictViewDash.setStringPicture("--");
+        pictViewDash.setTextAttr(30,color,ResourceManager.getTypeFace(service.getResources(), ResourceManager.Font.FONT_FILE));
+        pictViewDash.alignX = (byte) 2;
+        pictViewDash.alignY = (byte) 2;
+        pictViewDash.y = -65;
+        pictViewDash.x = 10;
+        pictViewDash.setRect(320,320);
+        list.add(pictViewDash);
 
         return list;
     }
 
     @Override
     public void onDataUpdate(DataType type, Object value) {
+        Log.d(TAG, String.format("onDataUpdate: value for datatype %f" , ValueForDataType.getValue(type,value)));
         widgetVal = ValueForDataType.getValue(type,value);
     }
     public List<DataType> getDataTypes() {

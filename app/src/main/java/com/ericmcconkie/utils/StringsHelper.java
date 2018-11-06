@@ -21,4 +21,7 @@ public class StringsHelper {
         paint.setTextAlign(Paint.Align.LEFT);
         return textAsBitmap(text,paint);
     }
+    static public String widgetValAsString(int widgetVal){
+        return String.format("%d",(int)widgetVal);
+    }
 }

@@ -34,6 +34,7 @@ public class MyWatchFace extends AbstractWatchFace {
         this.clock = new MainClock(settings);
         this.widgets.add(new TachWidget(settings));
         this.widgets.add(new TopWidget(settings));
+
 //        if(settings.isHeartRate()) {
 //            this.widgets.add(new HeartRateWidget(settings));
 //        }

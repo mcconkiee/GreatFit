@@ -1,32 +1,19 @@
 package com.ericmcconkie.watchface.widget;
 
 import android.app.Service;
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Point;
-import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 
 import com.dinodevs.greatfitwatchface.R;
-import com.dinodevs.greatfitwatchface.data.Battery;
 import com.dinodevs.greatfitwatchface.data.DataType;
 import com.dinodevs.greatfitwatchface.widget.AbstractWidget;
-import com.ericmcconkie.utils.RotatedBitmap;
 import com.ericmcconkie.utils.ValueForDataType;
 import com.ericmcconkie.watchface.settings.Settings;
-import com.huami.watch.watchface.util.Util;
-import com.ingenic.iwds.slpt.view.analog.SlptAnalogMinuteView;
-import com.ingenic.iwds.slpt.view.analog.SlptRotatePictureView;
 import com.ingenic.iwds.slpt.view.analog.SlptRotateView;
-import com.ingenic.iwds.slpt.view.core.SlptPictureView;
 import com.ingenic.iwds.slpt.view.core.SlptViewComponent;
-import com.ingenic.iwds.slpt.view.utils.SimpleFile;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;

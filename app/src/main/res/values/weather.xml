@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="string" name="sunny" >sunny</item>
+    <item type="string" name="cloudy" >cloudy</item>
+    <item type="string" name="overcast" >overcast</item>
+    <item type="string" name="fog" >fog</item>
+    <item type="string" name="smog" >smog</item>
+    <item type="string" name="shower" >shower</item>
+    <item type="string" name="thunder_shower" >thunder_shower</item>
+    <item type="string" name="light_rain" >light_rain</item>
+    <item type="string" name="moderate_rain" >moderate_rain</item>
+    <item type="string" name="heavy_rain" >heavy_rain</item>
+    <item type="string" name="rainstorm" >rainstorm</item>
+    <item type="string" name="torrential_rain" >torrential_rain</item>
+    <item type="string" name="sleet" >sleet</item>
+    <item type="string" name="freezing_rain" >freezing_rain</item>
+    <item type="string" name="hail" >hail</item>
+    <item type="string" name="light_snow" >light_snow</item>
+    <item type="string" name="moderate_snow" >moderate_snow</item>
+    <item type="string" name="heavy_snow" >heavy_snow</item>
+    <item type="string" name="snowstorm" >snowstorm</item>
+    <item type="string" name="dust" >dust</item>
+    <item type="string" name="blowing_sand" >blowing_sand</item>
+    <item type="string" name="sand_storm" >sand_storm</item>
+    <item type="string" name="unknown" >unknown</item>
+</resources>
